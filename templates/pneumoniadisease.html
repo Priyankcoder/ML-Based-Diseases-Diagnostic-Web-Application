@@ -54,7 +54,7 @@
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
           <strong>Info!</strong> Upload your Chest X-Ray images only, to detect the presence of Pneumonia.
         </div>
-		    <span class="btn btn-default btn-file">Select Image <input type="file" name="file1"></span><br>
+		    <span class="btn btn-default btn-file">Select Image <input type="file" name="file1" required="required"></span><br>
 		    <img src="{{ url_for('send_file', filename=file_name)}}" onerror="this.src='/static/default.png'" style ="max-width: 500px; max-height: 450px; margin-top: 30px; margin-bottom: 10px" />
   			<p style="font-style: italic">{{ file_name }}</p>
         <br><button id="sub" type="submit ">Predict</button>
