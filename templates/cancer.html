@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+
+    {% if title %}
+        <title>Healthcare Blog - {{ title }}</title>
+    {% else %}
+        <title>Healthcare Blog</title>
+    {% endif %}
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: rgb(0, 255, 204); font-weight: 700">Health Predictor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('heartdisease') }}">Heart Disease</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('liverdisease') }}">Liver Disease</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('breastcancer') }}">Breast Cancer</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('malariadisease') }}">Malaria</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('pneumoniadisease') }}">Pneumonia</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container" style="margin-top: 3rem;">
+        <h1>Breast Cancer</h1>       
+        <p>
+        Breast cancer can occur in women and rarely in men. Symptoms of breast cancer include a lump in the breast, bloody discharge from the nipple and changes in the shape or texture of the nipple or breast. Its treatment depends on the stage of cancer. It may consist of chemotherapy, radiation, hormone therapy and surgery.<p>
+        <p>Data Source: <a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29">Breast Cancer Dataset</a>
+        <br>The dataset has been taken from UCI machine learning repository. The main objective of the analysis is to perform classification of tumors i.e., benign(B) or malignant(M). A benign tumor is a tumor that does not invade its surrounding tissue or spread around the body. A malignant tumor is a tumor that may invade its surrounding tissue or spread around the body. This dataset consists of 569 rows and 33 columns.
+        <br><h5>Attribute Information:</h5>
+        id: ID number
+        <br>diagnosis: The diagnosis of breast tissues (M = malignant, B = benign)
+        <br>radius_mean: mean of distances from center to points on the perimeter
+        <br>texture_mean: standard deviation of gray-scale values
+        <br>perimeter_mean: mean size of the core tumor
+        <br>area_mean
+        <br>smoothness_mean: mean of local variation in radius lengths
+        <br>compactness_mean: mean of perimeter² / area — 1.0
+        <br>concavity_mean: mean of severity of concave portions of the contour
+        <br>concave points_mean: mean for number of concave portions of the contour
+        <br>symmetry_mean
+        <br>fractal_dimension_mean: mean for “coastline approximation” — 1
+        <br>radius_se: standard error for the mean of distances from center to points on the perimeter
+        <br>texture_se: standard error for standard deviation of gray-scale values
+        <br>perimeter_se
+        <br>area_se
+        <br>smoothness_se: standard error for local variation in radius lengths
+        <br>compactness_se: standard error for perimeter² / area — 1.0
+        <br>concavity_se: standard error for severity of concave portions of the contour
+        <br>concave points_se: standard error for number of concave portions of the contour
+        <br>symmetry_se
+        <br>fractal_dimension_se: standard error for “coastline approximation” — 1
+        <br>radius_worst: “worst” or largest mean value for mean of distances from center to points on the perimeter
+        <br>texture_worst: “worst” or largest mean value for standard deviation of gray-scale values
+        <br>perimeter_worst
+        <br>area_worst
+        <br>smoothness_worst: “worst” or largest mean value for local variation in radius lengths
+        <br>compactness_worst: “worst” or largest mean value for perimeter² / area — 1.0
+        <br>concavity_worst: “worst” or largest mean value for severity of concave portions of the contour
+        <br>concave points_worst: “worst” or largest mean value for number of concave portions of the contour
+        <br>symmetry_worst
+        <br>fractal_dimension_worst: “worst” or largest mean value for “coastline approximation” — 1<p><br>
+        
+        <h6>Sample Input Values</h6>
+        <img style="max-width: 600px" src="static/ccr.png" class="center">
+    </div>
+
+    <div class="container" style="margin-top: 5rem;">
+          <h1>Breast Cancer Predictor ML Application</h1>
+          <form action="{{ url_for('breastcancer')}}" method="POST">    
+            <div class="mb-3">
+              <label for="first">texture_mean</label> 
+              <input id="first" class="form-control" name="texture_mean" type="number"  step="any" required="required">
+            </div> 
+  
+            
+            <div class="mb-3">
+            <label for="second">perimeter_mean (mean size of the core tumor)</label> <input id="second" name="perimeter_mean" type="number" class="form-control" step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="third">smoothness_mean</label><input id="third" name="smoothness_mean" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="fourth">compactness_mean</label> <input id="fourth" name="compactness_mean" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="fifth">concavity_mean</label> <input id="fifth" name="concavity_mean" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="sixth">concave_points_mean</label> <input id="sixth" name="concave_points_mean" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="seventh">symmetry_mean</label> <input id="seventh" name="symmetry_mean" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="eighth">radius_se</label> <input name="radius_se" id="eighth" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="ninth">compactness_se</label> <input id="ninth" name="compactness_se" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="tenth">concavity_se</label> <input id="tenth" name="concavity_se" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="eleventh">concave_points_se</label> <input name="concave_points_se" id="eleventh" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="twelfth">texture_worst</label> <input name="texture_worst" id="twelfth" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="thirteenth">smoothness_worst</label> <input name="smoothness_worst" id="thirteenth" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="fourteenth">compactness_worst</label> <input name="compactness_worst" id="fourteenth" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="fifteenth">concavity_worst</label> <input name="concavity_worst" id="fifteenth" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="sixteenth">concave_points_worst</label> <input name="concave_points_worst" id="sixteenth" type="number" class="form-control" step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="seventeenth">symmetry_worst</label> <input name="symmetry_worst" id="seventeenth" type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <div class="mb-3">
+            <label for="eighteenth">fractal_dimension_worst</label> <input name="fractal_dimension_worst" id="eighteenth"  type="number" class="form-control"  step="any" required="required">
+            </div>
+
+            <button id="sub" type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        <br><h3>{{ prediction_text }}</h3>   
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

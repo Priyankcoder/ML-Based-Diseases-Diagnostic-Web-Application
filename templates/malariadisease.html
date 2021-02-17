@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    {% if title %}
+        <title>Healthcare Blog - {{ title }}</title>
+    {% else %}
+        <title>Healthcare Blog</title>
+    {% endif %}
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: rgb(0, 255, 204); font-weight: 700">Health Predictor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('heartdisease') }}">Heart Disease</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('liverdisease') }}">Liver Disease</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('breastcancer') }}">Breast Cancer</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('malariadisease') }}">Malaria</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('pneumoniadisease') }}">Pneumonia</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div id="malariadiseasepage">
+        <h1>Malaria </h1>
+        <p>
+        Malaria is a life-threatening disease caused by parasites that are transmitted to people through the bites of infected female Anopheles mosquitoes. It is preventable and curable. The severity of malaria varies based on the species of plasmodium. Symptoms are chills, fever and sweating, usually occurring a few weeks after being bitten.
+	<br>The dataset contains a total of 27,558 cell images with equal instances of parasitized and uninfected cells.
+        <br>Data Source: <a href="https://lhncbc.nlm.nih.gov/publication/pub9932">Malaria Dataset</a><p>
+	<h6>Sample Input Images</h6>
+        <img style="max-width: 300px" src="/static/cell.png"/ class="one">
+	<img style="max-width: 300px" src="/static/cell3.png"/ class="one">    
+    </div><br>    
+    <div style="color:black; text-align: center">
+			  <form action="{{ url_for('malariadisease')}}" method="POST" enctype="multipart/form-data" style="margin-top: 30px; width: 80%; text-align: center; margin: auto">
+  				<h1>Malaria Disease Image Classifier</h1><br>
+          <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>Info!</strong> Upload your red blood cell images only, to detect the presence of Malaria.
+          </div>
+  			  <span class="btn btn-default btn-file">Select Image <input type="file" name="file" required="required"></span><br>
+  			  <img src="{{ url_for('send_file', filename=image_name)}}" onerror="this.src='/static/default.png'" style ="max-width: 500px; max-height: 450px; margin-top: 30px; margin-bottom: 10px" />
+      		<p style="font-style: italic">{{ image_name }}</p>
+          <br><button id="sub" type="submit ">Predict</button>
+		    </form>
+          <br><h3><div style="text-align: center; color:#4CAF50">{{ prediction_text }}</div></h3>
+	  </div>
+
+    <style>
+    	body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+        
+      .bg-img {
+          /* The image used */
+          background-image: url("/static/malaria.gif");
+
+          min-height: 400px;
+
+          /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          /* Needed to position the navbar */
+          position: relative;
+        }
+
+        /* Position the navbar container inside the image */
+        .container {
+          position: absolute;
+          margin: 20px;
+          width: auto;
+        }
+
+        /* The navbar */
+        .topnav {
+          overflow: hidden;
+          background-color: #29AB87;
+        }
+
+        /* Navbar links */
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 18px;
+        }
+
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+
+        .centered {
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+          }
+         
+         
+        button {
+          background-color: #29AB87;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+
+        section { display: block; }
+
+        .img_holder img{
+        max-width: 100%; max-height: 100%;
+    	}
+
+        .navbar{ 
+            background-color:#008081;
+        }
+        
+        #malariadiseasepage {
+          padding: 20px;
+          border-spacing: 15px;
+          text-align: justify;
+          border-bottom-left-radius: 25px;
+          border-bottom-right-radius: 25px;
+        }
+
+        .alert {
+          padding: 16px;
+          background-color: #57bac9;
+          color: white;
+        }
+
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 25px;
+          line-height: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .closebtn:hover {
+          color: black;
+        }
+	    
+	.one{
+            padding: 0px 10px;
+            display: inline-block;
+            margin: 4px 2px;
+        }
+    </style>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

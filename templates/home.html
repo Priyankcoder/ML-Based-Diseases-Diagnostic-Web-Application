@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+	{% if title %}
+		<title>Healthcare Blog - {{ title }}</title>
+	{% else %}
+		<title>Healthcare Blog</title>
+	{% endif %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: rgb(0, 255, 204); font-weight: 700">Health Predictor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('heartdisease') }}">Heart Disease</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('liverdisease') }}">Liver Disease</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('breastcancer') }}">Breast Cancer</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('malariadisease') }}">Malaria</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('pneumoniadisease') }}">Pneumonia</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+	
+	  <!--   -->
+	    
+	<div class="container" >
+      <div class="container">
+        <div style="margin-top: 3rem;">
+        <h1>Healthcare ML Web Application</h1>
+      </div>
+    	<p>Access to quality healthcare and doctors has always been a concern in developing countries and remote areas. To deal with such issues, this healthcare web application is developed. Healthcare data was fed to machine learning training models and engines for predictive modelling. The accuracy of these models is directly proportional to the training they get. These models will be able to predict the potential health risks to a patient a lot earlier so that they could take the preventive measures and live a long healthy life.<p>
+
+      </div>
+        <!-- <div class="container-fluid">  -->
+      <div class="row container justify-content-around ">
+        <!-- <div class="col-md-4"> -->
+          <div class="card col-md-4" style="width: 20rem; margin-top: 4rem;">
+            <img src="/static/heartdisease.jpg" class="card-img-top" alt="heart disease">
+            <div class="card-body">
+              <p class="card-text"> This ML model can predict your heart condition based on certain parameters of heart report</p>
+            </div>
+            <a href="{{ url_for('heartdisease')}}" class="btn btn-primary">Predict</a>
+          </div>
+        <!-- </div> -->
+
+        <!-- <div class="col-md-4"> -->
+          <div class="card col-md-4" style="width: 20rem; margin-top: 4rem;">
+            <img src="/static/malignant.jpg" class="card-img-top" alt="malignant">
+            <div class="card-body">
+              <p class="card-text">This ML model can predict if the tumour is benign or malignant based on certain parameters of report</p>
+            </div>
+            <a href="{{ url_for('breastcancer')}}" class="btn btn-primary">Predict</a>
+          </div>
+        <!-- </div> -->
+
+        <div class="card col-md-4" style="width: 20rem; margin-top: 4rem;">
+          <img src="/static/liverdisease.jpg" class="card-img-top" alt="liver disease">
+          <div class="card-body">
+            <p class="card-text">This ML model can predict the presence of liver disease based on certain parameters of report</p>
+          </div>
+          <a href="{{ url_for('liverdisease')}}" class="btn btn-primary">Predict</a>
+        </div>
+
+        <div class="card col-md-4" style="width: 20rem; margin-top: 4rem;">
+          <img src="/static/pneumonia.jpg" class="card-img-top" alt="Pneumonia">
+          <div class="card-body">
+            <p class="card-text">This ML model can detect the pneumonia disease by processing the x-ray photo of chest (anterior-posterior)</p>
+          </div>
+          <a href="{{ url_for('pneumoniadisease')}}" class="btn btn-primary">Predict</a>
+        </div>
+
+        <div class="card col-md-4" style="width: 20rem; margin-top: 4rem;">
+          <img src="/static/malaria.jpg" class="card-img-top" alt="Malaria">
+          <div class="card-body">
+            <p class="card-text">This ML model can detect the malaria disease by processing the bite area image of mosquitoe</p>
+          </div>
+          <a href="{{ url_for('malariadisease')}}" class="btn btn-primary">Predict</a>
+        </div>
+      </div>
+          
+  </div>        
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> -->
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>

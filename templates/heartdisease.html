@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    {% if title %}
+        <title>Healthcare Blog - {{ title }}</title>
+    {% else %}
+        <title>Healthcare Blog</title>
+    {% endif %}
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: rgb(0, 255, 204); font-weight: 700">Health Predictor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('heartdisease') }}">Heart Disease</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('liverdisease') }}">Liver Disease</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('breastcancer') }}">Breast Cancer</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('malariadisease') }}">Malaria</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('pneumoniadisease') }}">Pneumonia</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container" id="heartdiseasepage" style="margin-top: 3rem;">
+        <h1>Heart Disease</h1>
+        A disease is an unnatural medical condition that negatively affects the functional state of an organism and is generally associated with certain signs of illness. As reported by World Health Organization (WHO), Heart Disease and Stroke are the world’s biggest killers and have remained the leading causes of death globally in the last 15 years. <br>In the direction of predicting heart disease, Machine Learning can present remarkable features that simplify the identification of unseen patterns, eventually providing clinical insights that assist physicians in planning and providing care. <p>
+        <p>The Heart Disease dataset has been taken from Kaggle. This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them. It has a total number of 303 rows and 14 columns among which 165 have a heart disease.
+        <br>Data Source: <a href="https://www.kaggle.com/johnsmith88/heart-disease-dataset">Heart Disease Dataset</a>
+        <br><h5>Attribute Information:</h5>
+        age: age in years
+        <br>sex: (1 = male; 0 = female)
+        <br>cp: chest pain type
+        <br>trestbps: resting blood pressure (in mm Hg on admission to the hospital)
+        <br>chol: serum cholestoral in mg/dl
+        <br>fbs: (fasting blood sugar > 120 mg/dl) (1 = true; 0 = false)
+        <br>restecg: resting electrocardiographic results
+        <br>thalach: maximum heart rate achieved
+        <br>exang: exercise induced angina (1 = yes; 0 = no)
+        <br>oldpeak: ST depression induced by exercise relative to rest
+        <br>slope: the slope of the peak exercise ST segment
+        <br>ca: number of major vessels (0–4) colored by flourosopy
+        <br>thal: thalassemia (1 = normal; 2 = fixed defect; 3 = reversable defect)
+        <br>target: (1= heart disease or 0 = no heart disease)<p><br>
+        
+        <h6>Sample Input Values</h6>
+        <img style="max-width: 600px" src="/static/hrt.png"/ class="center">
+    </div>
+
+    <div class="container" style="margin-top: 5rem;">
+        <h1>Heart Disease Predictor ML Application</h1>
+        <form action="{{ url_for('heartdisease')}}" method="POST">
+            <div class="mb-3">
+              <label for="first">Age</label>
+              <input type="number" class="form-control"  id="first" name="age" required="required"></input>
+            </div>        
+            <div class="mb-3">
+              <label for="second">Gender(1 = male; 0 = female)</label>
+              <input class="form-control"  id="second" type="number" name="sex" required="required" ></input>
+            </div>   
+             
+            <div class="mb-3">
+              <label for="third">ChestPain (chest pain type-0,1,2,3) </label>
+              <input class="form-control"  id="third" type="number" name="cp" required="required"></input>
+            </div> 
+
+            <div class="mb-3"">
+              <label for="fourth">Resting Blood Pressure (in mm Hg) </label>
+              <input id="fourth" name="trestbps" type="number" class="form-control" step="any" required="required" ></input>
+            </div> 
+
+            <div class="mb-3">
+              <label for="fifth">Resting Electrocardiographic Results(0 or 1)</label>
+              <input id="fifth" name="restecg" type="number" class="form-control" required="required">
+            </div> 
+
+            <div class="mb-3">
+              <label for="sixth">MaxHeartRate (maximum heart rate achieved eg. 156, 173, 187,...)</label>
+              <input id="sixth" name="thalach" type="number" class="form-control" step="any" required="required">
+            </div>
+            
+            <div class="mb-3">
+              <label for="seventh" >ExerciseInducedAngina (exercise induced angina (1 = yes; 0 = no))</label>
+              <input id="seventh" name="exang" type="number" class="form-control" required="required">
+            </div> 
+
+            <div class="mb-3">
+              <label for="eighth" >STdepression (ST depression induced by exercise relative to rest eg. 0.8, 1.4, 3.5,...)</label>
+              <input name="oldpeak" id="eighth" type="number" class="form-control" step="any" required="required">
+            </div> 
+
+            <div class="mb-3">
+              <label for="ninth">ExercisePeakSlope (the slope of the peak exercise ST segment 0, 1, 2)</label>
+              <input id="ninth" name="slope" type="number" class="form-control" required="required">
+            </div>
+
+            <div class="mb-3">
+              <label for="tenth">MajorVesselsNo (number of major vessels (0-4) colored by flourosopy)</label>
+              <input id="tenth" name="ca"  type="number" class="form-control" required="required">
+            </div>
+
+            <div class="mb-3">
+              <label for="eleventh">Thalassemia (1 = normal; 2 = fixed defect; 3 = reversable defect) </label>
+              <input name="thal" id="eleventh" type="number" class="form-control" required="required">
+            </div>
+            <button id="sub" type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        <h3>{{ prediction_text }}</h3>  
+    </div>   
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
