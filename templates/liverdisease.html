@@ -63,55 +63,68 @@
 
     <div class="container" style="margin-top: 5rem;">
         <h1>Liver Disease Predictor ML Application</h1>
+        <center>
+              <form method="POST" enctype="multipart/form-data" style="margin-top: 30px; width: 80%; text-align: center; margin: auto">
+              <!-- <h1>Pneumonia Disease Image Classifier</h1><br> -->
+              <!-- <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <strong>Info!</strong> Upload your Chest X-Ray images only, to detect the presence of Pneumonia.
+              </div> -->
+              <span class="btn btn-default btn-file"><b>Upload Report:</b>  <input type="file" name="img" required="required"></span><br>
+              <!-- <img src="{{ url_for('send_file', filename=file_name)}}" onerror="this.src='/static/default.png'" style ="max-width: 500px; max-height: 450px; margin-top: 30px; margin-bottom: 10px" /> -->
+              <!-- <p style="font-style: italic">{{ file_name }}</p> -->
+              <br><button id="sub" type="submit" class="btn btn-primary">Upload</button>
+            </form>
+          </center>
         <form action="{{ url_for('liverdisease')}}" method="POST">
 
             <div class="mb-3">
-              <label for="first">Age  </label> <input id="first" name="Age" type="number"  class="form-control" required="required">
+              <label for="first">Age  </label> <input id="first" name="Age" type="number"  class="form-control" required="required" value="{{ Age }}">
             </div>
 
 
             <div class="mb-3">
-              <label for="second">Gender (0 = male; 1 = female)  </label> <input id="second" name="Gender" type="number" class="form-control" required="required">
+              <label for="second">Gender (0 = male; 1 = female)  </label> <input id="second" name="Gender" type="number" class="form-control" required="required"  value="{{ Gender }}">
             </div>
 
 
             <div class="mb-3">
-              <label for="third">Total_Bilirubin  </label> <input id="third" name="Total_Bilirubin" type="number" class="form-control" step="any" required="required">
+              <label for="third">Total_Bilirubin  </label> <input id="third" name="Total_Bilirubin" type="number" class="form-control" step="any" required="required"  value="{{ Total_Bilirubin }}">
             </div>
 
 
             <div class="mb-3">
-              <label for="fourth">Direct_Bilirubin  </label> <input id="fourth" name="Direct_Bilirubin" type="number" class="form-control" step="any" required="required">
+              <label for="fourth">Direct_Bilirubin  </label> <input id="fourth" name="Direct_Bilirubin" type="number" class="form-control" step="any" required="required"  value="{{ Direct_Bilirubin }}">
             </div>
 
 
             <div class="mb-3">
-              <label for="fifth">Alkaline_Phosphotase  </label> <input id="fifth" name="Alkaline_Phosphotase" type="number" class="form-control" step="any" required="required">
+              <label for="fifth">Alkaline_Phosphotase  </label> <input id="fifth" name="Alkaline_Phosphotase" type="number" class="form-control" step="any" required="required"  value="{{ Alkaline_Phosphotase }}">
             </div>
 
 
             <div class="mb-3">
-              <label for="sixth">Alamine_Aminotransferase  </label> <input id="sixth" name="Alamine_Aminotransferase" type="number" class="form-control" step="any" required="required">
+              <label for="sixth">Alamine_Aminotransferase  </label> <input id="sixth" name="Alamine_Aminotransferase" type="number" class="form-control" step="any" required="required"  value="{{ Alamine_Aminotransferase }}">
             </div>
 
 
             <div class="mb-3">
-              <label for="seventh">Aspartate_Aminotransferase  </label> <input id="seventh" name="Aspartate_Aminotransferase" type="number" class="form-control" step="any" required="required">
+              <label for="seventh">Aspartate_Aminotransferase  </label> <input id="seventh" name="Aspartate_Aminotransferase" type="number" class="form-control" step="any" required="required"  value="{{ Aspartate_Aminotransferase }}">
             </div>
 
 
             <div class="mb-3">
-              <label for="eighth">Total_Protiens  </label> <input name="Total_Protiens" id="eighth" type="number" class="form-control" step="any" required="required">
+              <label for="eighth">Total_Protiens  </label> <input name="Total_Protiens" id="eighth" type="number" class="form-control" step="any" required="required"  value="{{ Total_Protiens }}">
             </div>
 
 
             <div class="mb-3">
-              <label for="ninth">Albumin  </label> <input id="ninth" name="Albumin" type="number" class="form-control" step="any" required="required">
+              <label for="ninth">Albumin  </label> <input id="ninth" name="Albumin" type="number" class="form-control" step="any" required="required" value="{{ Albumin }}">
             </div>
 
 
             <div class="mb-3">
-              <label for="tenth">Albumin_and_Globulin_Ratio  </label> <input id="tenth" name="Albumin_and_Globulin_Ratio" type="number" class="form-control" step="any" required="required">
+              <label for="tenth">Albumin_and_Globulin_Ratio  </label> <input id="tenth" name="Albumin_and_Globulin_Ratio" type="number" class="form-control" step="any" required="required" value="{{ Albumin_and_Globulin_Ratio }}">
             </div>
 
             <button id="sub" type="submit " class="btn btn-primary">Predict</button>

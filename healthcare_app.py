@@ -13,6 +13,10 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
 from werkzeug.utils import secure_filename
+from PIL import Image as Processor
+import pytesseract
+
+pytesseract.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
 
 app = Flask(__name__)
 
@@ -32,6 +36,33 @@ def home():
 @app.route('/heartdisease', methods=['GET','POST'])
 def heartdisease():
     if request.method == 'POST':
+        img_processor = request.files["img"]
+        if img_processor:
+            file_name = img_processor.filename
+            img_processor.save(os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(file_name)))
+
+            file_path = str(os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(file_name)))
+            processed_image = Processor.open(file_path)
+            text = pytesseract.image_to_string(processed_image)
+            res = text.split()
+            key = []
+            value = []
+
+            length = int(len(res)/2)
+            for i in range(0,length):
+                key.append(res[i])
+                value.append(res[i+length])
+
+            dictionary = dict(zip(key, value))
+            print(dictionary)
+            return render_template("heartdisease.html", 
+                age=value[0], sex=value[1], cp= value[2], trestbps= value[3], restecg= value[4], thalach= value[5],
+                exang= value[0], oldpeak= value[1], slope= value[2], ca= value[3], thal= value[4],
+                title='Heart Disease')
+        else:
+            print("error")
+            return render_template('heartdisease.html', title='Heart Disease')
+
         Age=int(request.form['age'])
         Gender=int(request.form['sex'])
         ChestPain= int(request.form['cp'])
@@ -55,6 +86,32 @@ def heartdisease():
 @app.route('/liverdisease', methods=['GET','POST'])
 def liverdisease():
     if request.method == 'POST':
+        img_processor = request.files["img"]
+        if img_processor:
+            file_name = img_processor.filename
+            img_processor.save(os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(file_name)))
+
+            file_path = str(os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(file_name)))
+            processed_image = Processor.open(file_path)
+            text = pytesseract.image_to_string(processed_image)
+            res = text.split()
+            key = []
+            value = []
+
+            length = int(len(res)/2)
+            for i in range(0,length):
+                key.append(res[i])
+                value.append(res[i+length])
+
+            dictionary = dict(zip(key, value))
+            return render_template("liverdisease.html", 
+                Age=value[0], Gender=value[1], Total_Bilirubin= value[2], Direct_Bilirubin= value[3], Alkaline_Phosphotase= value[4], Alamine_Aminotransferase= value[5],
+                Aspartate_Aminotransferase= value[6], Total_Protiens= value[7], Albumin= value[8], Albumin_and_Globulin_Ratio= value[9],
+                title='Heart Disease')
+        else:
+            print("error")
+            return render_template('liverdisease.html', title='Heart Disease')
+
         Age=int(request.form['Age'])
         Gender=int(request.form['Gender'])
         Total_Bilirubin= float(request.form['Total_Bilirubin'])
