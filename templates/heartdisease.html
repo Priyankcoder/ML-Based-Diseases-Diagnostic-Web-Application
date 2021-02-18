@@ -64,20 +64,20 @@
     <div class="container" style="margin-top: 5rem;">
         <h1>Heart Disease Predictor ML Application</h1>
         <center>
-          <form method="POST" enctype="multipart/form-data" style="margin-top: 30px; width: 80%; text-align: center; margin: auto">
+          <!-- <form method="POST" enctype="multipart/form-data" style="margin-top: 30px; width: 80%; text-align: center; margin: auto"> -->
           <!-- <h1>Pneumonia Disease Image Classifier</h1><br> -->
           <!-- <div class="alert">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>Info!</strong> Upload your Chest X-Ray images only, to detect the presence of Pneumonia.
           </div> -->
-          <span class="btn btn-default btn-file"><b>Upload Report:</b>  <input type="file" name="img" required="required"></span><br>
+          <!-- <span class="btn btn-default btn-file"><b>Upload Report:</b>  <input type="file" name="img"></span><br> -->
           <!-- <img src="{{ url_for('send_file', filename=file_name)}}" onerror="this.src='/static/default.png'" style ="max-width: 500px; max-height: 450px; margin-top: 30px; margin-bottom: 10px" /> -->
           <!-- <p style="font-style: italic">{{ file_name }}</p> -->
-          <br><button id="sub" type="submit" class="btn btn-primary">Upload</button>
-        </form>
+          <!-- <br><button id="sub" type="submit" class="btn btn-primary">Upload</button> -->
       </center>
 
-        <form action="{{ url_for('heartdisease')}}" method="POST">
+        <form action="{{ url_for('heartdisease')}}" method="POST" enctype="multipart/form-data">
+          <span class="btn btn-default btn-file"><b>Upload Report:</b>  <input type="file" name="img"></span><br>
             <div class="mb-3">
               <label for="first">Age</label>
               <input type="number" class="form-control"  id="first" name="age" required="required" value="{{ age }}"></input>

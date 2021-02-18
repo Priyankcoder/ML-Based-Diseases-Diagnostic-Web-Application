@@ -60,9 +60,6 @@ def heartdisease():
                 age=value[0], sex=value[1], cp= value[2], trestbps= value[3], restecg= value[4], thalach= value[5],
                 exang= value[0], oldpeak= value[1], slope= value[2], ca= value[3], thal= value[4],
                 title='Heart Disease')
-        else:
-            print("error")
-            return render_template('heartdisease.html', title='Heart Disease')
 
         Age=int(request.form['age'])
         Gender=int(request.form['sex'])
