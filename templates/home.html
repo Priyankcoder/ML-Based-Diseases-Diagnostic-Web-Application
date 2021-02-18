@@ -93,7 +93,58 @@
           <a href="{{ url_for('malariadisease')}}" class="btn btn-primary">Predict</a>
         </div>
       </div>
-          
+    <h1 style="margin-top: 5rem;">Model Suggestion based on symptoms</h1>
+    <form action="" method="POST" style="margin-bottom: 5rem;">    
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="ys">
+        <label class="form-check-label" for="flexCheckDefault">
+          yellowish skin and eyes 
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="ap">
+        <label class="form-check-label" for="flexCheckChecked">
+          Abdominal pain and swelling.
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="ap"></input>
+        <label class="form-check-label" for="flexCheckChecked">
+          Swelling in the legs and ankles.
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="ap"></input>
+        <label class="form-check-label" for="flexCheckChecked">
+          Possible heart failure
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="ap"></input>
+        <label class="form-check-label" for="flexCheckChecked">
+          Lower abdomen
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="is">
+        <label class="form-check-label" for="flexCheckChecked">
+          Itchy skin
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="du">
+        <label class="form-check-label" for="flexCheckChecked">
+          Dark urine color.
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="ps">
+        <label class="form-check-label" for="flexCheckChecked">
+          Pale stool color
+        </label>
+      </div>
+      <a href="/liverdisease" class="btn btn-primary">Suggest Model</a>
+    </form>  
   </div>        
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

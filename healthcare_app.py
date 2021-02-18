@@ -31,6 +31,7 @@ model_pneumonia = load_model('pneumonia_disease.h5')
 @app.route('/',methods=['GET'])
 @app.route('/home',methods=['GET'])
 def home():
+
     return render_template('home.html')
 
 @app.route('/heartdisease', methods=['GET','POST'])
